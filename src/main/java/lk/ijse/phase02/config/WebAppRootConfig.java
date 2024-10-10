@@ -12,7 +12,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 
 import javax.sql.DataSource;
 
@@ -31,7 +31,7 @@ public class WebAppRootConfig {
         dmds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dmds.setUrl("jdbc:mysql://localhost:3306/myPosPhase02?createDatabaseIfNotExist=true");
         dmds.setUsername("root");
-        dmds.setPassword("mysql");
+        dmds.setPassword("Ijse@1234");
         return dmds;
     }
 
@@ -41,7 +41,7 @@ public class WebAppRootConfig {
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("lk.ijse.gdse.aad67.notecollecter67.entity.impl");
+        factory.setPackagesToScan("lk.ijse.entity.impl");
         factory.setDataSource(dataSource());
         return factory;
     }
