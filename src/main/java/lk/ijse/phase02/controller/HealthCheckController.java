@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/health")
+@RequestMapping("/api/v1/health")
 public class HealthCheckController {
     @GetMapping
-    public String healthTest(){
-        return "Note controller is working";
+    public String HealthTest(){
+        return "Health checker is working";
     }
 }
