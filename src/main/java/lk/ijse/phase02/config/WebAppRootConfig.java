@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "lk.ijse.phase02")
-@EnableJpaRepositories(basePackages = "lk.ijse.phase02.dao")
+@EnableJpaRepositories(basePackages = "lk.ijse.phase02")
 @EnableTransactionManagement
 public class WebAppRootConfig {
 
@@ -41,7 +41,7 @@ public class WebAppRootConfig {
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("lk.ijse.entity.impl");
+        factory.setPackagesToScan("lk.ijse.phase02.entity");
         factory.setDataSource(dataSource());
         return factory;
     }
