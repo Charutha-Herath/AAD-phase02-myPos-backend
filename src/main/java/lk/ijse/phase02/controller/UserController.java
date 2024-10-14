@@ -1,6 +1,8 @@
 package lk.ijse.phase02.controller;
 
 
+import lk.ijse.phase02.dto.impl.UserDTO;
+import lk.ijse.phase02.exception.DataPersistException;
 import lk.ijse.phase02.service.UserService;
 import lk.ijse.phase02.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,29 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveUser(
             @RequestPart("name") String name,
-            @RequestPart("email") String mail,
+            @RequestPart("email") String email,
             @RequestPart("password")String password
     ){
-        String userId = AppUtil.generateUserId();
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+
+            UserDTO buildUserDTO = new UserDTO();
+
+            String userId = AppUtil.generateUserId();
+
+            buildUserDTO.setUserId(userId);
+            buildUserDTO.setName(name);
+            buildUserDTO.setEmail(email);
+            buildUserDTO.setPassword(password);
+
+            userService.saveUser(buildUserDTO);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (DataPersistException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
