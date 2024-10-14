@@ -1,5 +1,15 @@
 package lk.ijse.phase02.dto.impl;
 
-public class UserDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class UserDTO {
+    private String userId;
+    private String name;
+    private String email;
+    private String password;
 }
