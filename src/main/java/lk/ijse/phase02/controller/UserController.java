@@ -1,19 +1,17 @@
 package lk.ijse.phase02.controller;
 
 
-import lk.ijse.phase02.customStatusCodes.SelectedUserAndNoteErrorStatus;
+import lk.ijse.phase02.customStatusCodes.SelectedUserErrorStatus;
 import lk.ijse.phase02.dto.UserStatus;
 import lk.ijse.phase02.dto.impl.UserDTO;
 import lk.ijse.phase02.exception.DataPersistException;
 import lk.ijse.phase02.service.UserService;
 import lk.ijse.phase02.util.AppUtil;
 import lk.ijse.phase02.util.RegexProcess;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("api/v1/user")
@@ -53,7 +51,7 @@ public class UserController {
     @GetMapping(value = "/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UserStatus getSelectedUserByEmail(@PathVariable ("email") String email){
         if(!RegexProcess.userEmailMatcher(email)){
-            return new SelectedUserAndNoteErrorStatus(1,"User email not valid");
+            return new SelectedUserErrorStatus(1,"User email not valid");
         }
         return userService.getUserByEmail(email);
     }
