@@ -18,6 +18,7 @@ public class UserEntity implements SuperEntity {
     @Id
     private String userId;
     private String name;
+    @Column(unique = true)
     private String email;
     private String password;
 
